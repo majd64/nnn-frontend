@@ -32,7 +32,7 @@ function Login(props) {
       withCredentials: true,
       url: props.serverURL + '/login',
       headers: {
-        'Content-type': 'application/x-www-form-urlencoded'
+        'Content-type': 'application/x-www-form-urlencoded',
       }
     }).then(res => {
       console.log("resdata: " + res.data)

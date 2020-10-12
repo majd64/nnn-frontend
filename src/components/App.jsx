@@ -11,7 +11,7 @@ import axios from "axios"
 function App() {
   const [auth, setAuth] = useState(false);
 
-  const staging = false;
+  const staging = true;
   let api;
   if (staging){
     api = "http://localhost:5000";
@@ -23,13 +23,17 @@ function App() {
 
   reAuth()
   function reAuth(){
-
-    axios.get(serverURL + "/user/auth", {withCredentials: true}).then(res => {
+    axios({
+      method: 'get',
+      withCredentials: true,
+      url: serverURL + '/user/auth',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      }
+    }).then(res => {
       console.log(res.data)
       setAuth(res.data)
     })
-
-
   }
 
   return (
