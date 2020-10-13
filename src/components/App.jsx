@@ -11,7 +11,7 @@ import axios from "axios"
 function App() {
   const [auth, setAuth] = useState(false);
 
-  const staging = true;
+  const staging = false;
   let api;
   if (staging){
     api = "http://localhost:5000";
@@ -32,7 +32,12 @@ function App() {
       }
     }).then(res => {
       console.log(res.data)
-      setAuth(res.data)
+      if (res.data === "true" || res.data === true){
+        setAuth(true);
+      } else if (res.data === "false" || res.data === false){
+        setAuth(false);
+      }
+
     })
   }
 

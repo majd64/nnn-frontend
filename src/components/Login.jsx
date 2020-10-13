@@ -31,10 +31,8 @@ function Login(props) {
       data: Querystring.stringify(user),
       withCredentials: true,
       url: props.serverURL + '/login',
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded',
-      }
-    }).then(res => {
+      
+    }, {withCredentials: true}).then(res => {
       console.log("resdata: " + res.data)
       if (res.data === "success"){
         props.reAuth();
