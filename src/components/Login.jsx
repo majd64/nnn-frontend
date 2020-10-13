@@ -30,7 +30,7 @@ function Login(props) {
       method: 'post',
       data: Querystring.stringify(user),
       withCredentials: true,
-      url: '/login',
+      url: '/api/login',
     }, {withCredentials: true}).then(res => {
       console.log(res.data)
       if (res.data === "success"){

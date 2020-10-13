@@ -43,7 +43,7 @@ function Register(props) {
       method: 'post',
       data: Querystring.stringify(newUser),
       withCredentials: true,
-      url: '/register',
+      url: '/api/register',
       headers: {
         'Content-type': 'application/x-www-form-urlencoded'
       }

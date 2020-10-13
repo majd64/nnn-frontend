@@ -7,7 +7,7 @@ function Header(props) {
     axios({
       method: 'get',
       withCredentials: true,
-      url: '/logout',
+      url: '/api/logout',
     }).then(() => {props.reAuth()})
   }
 
