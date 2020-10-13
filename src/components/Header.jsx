@@ -7,9 +7,8 @@ function Header(props) {
     axios({
       method: 'get',
       withCredentials: true,
-      url: props.serverURL + '/logout',
+      url: '/logout',
     }).then(() => {props.reAuth()})
-
   }
 
   function getNavLinks(){

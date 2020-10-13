@@ -30,10 +30,9 @@ function Login(props) {
       method: 'post',
       data: Querystring.stringify(user),
       withCredentials: true,
-      url: props.serverURL + '/login',
-
+      url: '/login',
     }, {withCredentials: true}).then(res => {
-      console.log("resdata: " + res.data)
+      console.log(res.data)
       if (res.data === "success"){
         props.reAuth();
       }else{
