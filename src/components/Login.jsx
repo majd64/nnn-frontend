@@ -35,7 +35,7 @@ function Login(props) {
     }, {withCredentials: true}).then(res => {
       console.log("resdata: " + res.data)
       if (res.data === "success"){
-        props.history.push('/');
+        props.reAuth();
       }else{
         setResult((prevValue) => {
           return (
