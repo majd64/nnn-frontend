@@ -1,3 +1,6 @@
+html{
+  font-size: 16px;
+}
 body{
   background: rgba(61, 132, 168, 0.3);
   Font-Family: 'Ruda', Sans-Serif;
@@ -17,6 +20,9 @@ body{
   width: 100%;
   top: 50%;
   -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
