@@ -10,7 +10,6 @@ import axios from "axios"
 
 function App() {
   const [auth, setAuth] = useState(false);
-  const api = "https://nnn-server.herokuapp.com"
 
   useEffect(() => {
     reAuth();
