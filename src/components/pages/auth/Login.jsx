@@ -32,21 +32,20 @@ function Login(props) {
       withCredentials: true,
       url: '/api/login',
     }, {withCredentials: true}).then(res => {
-      console.log(res.data)
       if (res.data === "success"){
         props.reAuth();
       }else{
         setResult((prevValue) => {
           return (
             res.data.toString()
-          )
+          );
         });
       }
     }).catch(function(err){
       setResult((prevValue) => {
         return (
           "Invalid email or password"
-        )
+        );
       });
     })
   }
@@ -59,7 +58,6 @@ function Login(props) {
             Welcome back!
           </h1>
           <form autoComplete="new-password">
-
             <input
               autoFocus
               id="email"
@@ -71,7 +69,6 @@ function Login(props) {
               type="email"
             />
             <input
-              autoFocus
               id="password"
               className="input"
               value={user.password}
@@ -80,11 +77,8 @@ function Login(props) {
               placeholder="Password"
               type="password"
             />
-
             <button onClick={submit} className="form-button btn btn-danger join-button">Log in</button>
-
             {result && <div className="invalid-feedback d-block">{result}</div>}
-
           </form>
         </div>
       </div>

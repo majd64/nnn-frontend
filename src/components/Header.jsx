@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap';
 
 function Header(props) {
   function logout(){
@@ -14,44 +15,33 @@ function Header(props) {
   function getNavLinks(){
     if (props.auth){
       return (
-        <li className="nav-item mr-4">
-          <Link type="button" onClick={logout} className="btn btn-outline-light ">Log out</Link>
-        </li>
-      )
+        <Button onClick={logout} variant="outline-light">Log out</Button>
+      );
     }else{
       return (
         <>
-        <li className="nav-item mr-4">
-          <Link type="button" to="/login" className="btn btn-outline-light ">Log in</Link>
-        </li>
-        <li className="nav-item">
-          <Link type="button" to="/register" className="btn btn-danger ">Join the boys!</Link>
-        </li>
+        <Link className="btn btn-outline-light mr-3" to="/login">Log in</Link>
+        <Link className="btn btn-danger" to="/register">Join the boys!</Link>
         </>
-      )
+      );
     }
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div className="container-fluid">
-        <Link to="/" className="navbar-brand">NNN</Link>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item mr-3">
-              <Link to="/about" className="nav-link">What is this?</Link>
-            </li>
-            <li className="nav-item mr-4">
-              <Link to="/about" className="nav-link">NNN Rules</Link>
-            </li>
-            {getNavLinks()}
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <>
+    <Navbar className="fixed-top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Link className="navbar-brand" to="/">NNN</Link>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+      <Nav className="mr-auto"></Nav>
+      <Nav>
+        <Link className="mr-2 nav-link" to="/about">About</Link>
+        <Link className="mr-2 nav-link" to="/rules">Rules</Link>
+        {getNavLinks()}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  </>
   );
 }
 

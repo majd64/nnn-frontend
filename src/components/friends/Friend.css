@@ -1,0 +1,38 @@
+.friend{
+  height: 60px;
+  margin-bottom: 30px;
+}
+
+.friend .friend-name{
+  font-size: 1.05rem;
+  display: inline;
+}
+
+.friend .friend-subtitle{
+  font-size: 0.8rem;
+  font-weight: lighter;
+}
+
+.friend .friend-text{
+  vertical-align: middle;
+  display: inline-block;
+  padding-left: 15px;
+  height: 100%;
+}
+
+.friends-list{
+  height: calc(100vh - 55px);
+  background-color: #f6f8fa;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding: 20px;
+}
+
+.friends-list h4{
+  font-weight: 800;
+}
+
+.friend img{
+  border-radius: 50%;
+}

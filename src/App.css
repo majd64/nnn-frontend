@@ -1,18 +1,11 @@
-html{
-  font-size: 16px;
-}
 body{
   background: rgba(61, 132, 168, 0.3);
   Font-Family: 'Ruda', Sans-Serif;
   padding-top: 55px;
-
 }
 
-.navbar{
-  background-color: #48466d;
-  height: 55px;
-  font-size: 16px;
-  width: 100%;
+.bg-dark{
+  background-color: #48466d !important;
 }
 
 .center{
@@ -24,17 +17,6 @@ body{
   -moz-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
-}
-
-.btn:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.sign-up h1 {
-  font-size: 40px;
-  font-weight: 200;
-  margin-bottom: 15px;
 }
 
 .input {

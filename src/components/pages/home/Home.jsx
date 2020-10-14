@@ -1,5 +1,6 @@
 import React from "react";
-import NoAuthOctHomeScreen from "./NoAuthOctHomeScreen";
+import NoAuthOctHome from "./NoAuthOctHome";
+import AuthOctHome from "./AuthOctHome";
 
 function HomeScreen(props){
   let isNov = false;
@@ -11,17 +12,17 @@ function HomeScreen(props){
     }
   }else{
     if (props.auth){
-
+      return <AuthOctHome />
     }else{
-      return <NoAuthOctHomeScreen />
+      return <NoAuthOctHome />
     }
   }
 }
+
 function Home(props) {
 
   return (
-    <HomeScreen />
-
+    <HomeScreen auth={props.auth}/>
   );
 }
 

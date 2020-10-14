@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {BrowserRouter as Router, Route} from "react-router-dom";
-import Register from "./Register";
-import Login from "./Login";
-import About from "./About";
-import Rules from "./Rules";
+import Register from "./pages/auth/Register";
+import Login from "./pages/auth/Login";
+import About from "./pages/About";
+import Rules from "./pages/Rules";
 import Header from "./Header";
-import Home from "./Home";
+import Home from "./pages/home/Home";
 import axios from "axios"
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../App.css';
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -24,7 +26,6 @@ function App() {
         'Content-type': 'application/x-www-form-urlencoded',
       }
     }, {withCredentials: true}).then(res => {
-      console.log(res.data)
       if (res.data === true){
         setAuth(true);
       } else if (res.data === false){
