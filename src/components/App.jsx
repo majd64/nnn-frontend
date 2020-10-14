@@ -17,11 +17,9 @@ function App() {
     reAuth();
   });
   function reAuth(){
-    console.log("reauth")
     axios({
       method: 'get',
       url: '/api/user/auth',
-      withCredentials: true,
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
       }

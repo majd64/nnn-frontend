@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import TimerTillNovember from "./TimerTillNovember";
 import { Link } from 'react-router-dom';
 import { Button, Container, Col, Row} from 'react-bootstrap';
-import FriendsList from "../../friends-list/FriendsList";
+import FriendsList from "../../friends/FriendsList";
 
 
 function AuthOctHome(props) {
@@ -10,13 +10,7 @@ function AuthOctHome(props) {
 
   return (
     <div>
-      <Container fluid>
-        <Row xs={12}>
-          <Col xs={{ span: 3 }} className="p-0">
-          <FriendsList />
-          </Col>
-        </Row>
-    </Container>
+      <FriendsList />
     </div>
   );
 }
