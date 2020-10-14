@@ -7,7 +7,7 @@ function Register(props) {
     props.history.push('/')
   }
 
-  const [result, setResult] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [success, setSuccess] = useState(false);
 
   const [newUser, setNewUser] = useState({
@@ -39,38 +39,21 @@ function Register(props) {
 
   function submit(event){
     event.preventDefault();
-    axios({
-      method: 'post',
-      data: Querystring.stringify(newUser),
-      withCredentials: true,
-      url: '/api/register',
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded'
-      }
-    }).then(res => {
-      console.log(res)
-      if (res.data === "success"){
-        setResult(null);
-        setSuccess(true);
-
-        setTimeout(function(){
-          props.reAuth();
-        }, 2000);
-      }else{
-        setResult((prevValue) => {
-          return (
-            res.data.toString()
-          )
-        });
-      }
-    })
-    .catch(function(err){
-      setResult((prevValue) => {
-        return (
-          "Nuts! An unknown error occured"
-        )
-      });
-    })
+    axios.post("/api/register", Querystring.stringify(newUser))
+      .then(res => {
+        if (res.data.status === "success"){
+          setErrorMessage(null);
+          setSuccess(true);
+          setTimeout(function(){
+            props.reAuth();
+          }, 2000);
+        }else{
+          setErrorMessage(res.data.message);
+        }
+      })
+    .catch(() =>{
+      setErrorMessage("an unknown error occured");
+    });
   }
 
   return (
@@ -117,7 +100,7 @@ function Register(props) {
               autoComplete="no"
             />
             <button type="submit" onClick={submit} className="form-button btn btn-danger join-button">Sign Up</button>
-            {result && <div className="invalid-feedback d-block">{result}</div>}
+            {errorMessage && <div className="invalid-feedback d-block">{errorMessage}</div>}
             {success && <div className="valid-feedback d-block">Success! Please verify your email address</div>}
           </form>
         </div>

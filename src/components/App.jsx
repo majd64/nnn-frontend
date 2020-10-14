@@ -16,25 +16,26 @@ function App() {
   useEffect(() => {
     reAuth();
   });
+
   function reAuth(){
-    axios({
-      method: 'get',
-      url: '/api/user/auth',
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded',
-      }
-    }, {withCredentials: true}).then(res => {
-      if (res.data === true){
-        setAuth(true);
-      } else if (res.data === false){
-        setAuth(false);
-      }
-    });
+    axios.get("/api/user/auth")
+      .then(res => {
+        if (res.data.status === "success"){
+          setAuth(true);
+        } else{
+          setAuth(false);
+        }
+      });
+  }
+
+  function logout(){
+    axios.get("/api/logout")
+      .then(() => reAuth())
   }
 
   return (
     <Router>
-    <Header auth={auth} reAuth={reAuth}/>
+    <Header auth={auth} reAuth={reAuth} logout={logout}/>
       <Route path="/" exact render={(props) => (<Home {...props} auth={auth}/>)}/>
       <Route path="/register" exact render={(props) => (<Register {...props} auth={auth} reAuth={reAuth}/>)}/>
       <Route path="/login" exact render={(props) => (<Login {...props} auth={auth} reAuth={reAuth}/>)}/>

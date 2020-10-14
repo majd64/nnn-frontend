@@ -7,7 +7,8 @@ function Login(props) {
     props.history.push('/')
   }
 
-  const [result, setResult] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const [user, setUser] = useState({
     email: "",
@@ -26,28 +27,20 @@ function Login(props) {
 
   function submit(event){
     event.preventDefault();
-    axios({
-      method: 'post',
-      data: Querystring.stringify(user),
-      withCredentials: true,
-      url: '/api/login',
-    }, {withCredentials: true}).then(res => {
-      if (res.data === "success"){
-        props.reAuth();
-      }else{
-        setResult((prevValue) => {
-          return (
-            res.data.toString()
-          );
-        });
-      }
-    }).catch(function(err){
-      setResult((prevValue) => {
-        return (
-          "Invalid email or password"
-        );
-      });
-    })
+    axios.post("/api/login", Querystring.stringify(user))
+      .then(res => {
+        if (res.data.status === "success"){
+          setSuccess(true);
+          setTimeout(function(){
+            props.reAuth();
+          }, 500);
+        }else{
+          setErrorMessage(res.data.message);
+        }
+      })
+    .catch(() => {
+      setErrorMessage("invalid username or password");
+    });
   }
 
   return (
@@ -78,7 +71,8 @@ function Login(props) {
               type="password"
             />
             <button onClick={submit} className="form-button btn btn-danger join-button">Log in</button>
-            {result && <div className="invalid-feedback d-block">{result}</div>}
+            {errorMessage && <div className="invalid-feedback d-block">{errorMessage}</div>}
+            {success && <div className="valid-feedback d-block">Success!</div>}
           </form>
         </div>
       </div>

@@ -1,8 +1,6 @@
 import React from "react";
 import TimerTillNovember from "./TimerTillNovember";
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-
 
 function NoAuthOctoberHome(props) {
   return (

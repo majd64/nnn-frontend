@@ -4,7 +4,6 @@ import './Friend.css';
 import axios from 'axios'
 import SendIcon from '@material-ui/icons/Send';
 import Fab from '@material-ui/core/Fab';
-import { makeStyles } from '@material-ui/core/styles';
 import Querystring from "query-string"
 
 function FriendsList(props) {
@@ -13,17 +12,12 @@ function FriendsList(props) {
   const [friendRequest, setFreindRequest] = useState({sentRequest: false, didFindUser: false});
 
   useEffect(() => {
-    console.log("request being made")
-    axios({
-      method: 'get',
-      url: '/api/user/friends',
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded',
-      }
-    }, {withCredentials: true}).then(res => {
-      console.log(res.data.friends);
-      setFriends(res.data.friends);
-    });
+    axios.get("/api/user/friends")
+      .then(res => {
+        if (res.data.status === "success"){
+          setFriends(res.data.friends);
+        }
+      });
   }, [friends.length]);
 
   function handleChange(event) {
@@ -32,28 +26,19 @@ function FriendsList(props) {
 
   function submit(event){
     event.preventDefault();
-    axios({
-      method: 'post',
-      data: Querystring.stringify({newfriendusername: searchUserName}),
-      withCredentials: true,
-      url: '/api/user/addfriend',
-    }, {withCredentials: true}).then(res => {
-      console.log(res.data)
-      if (res.data === "success"){
-        setFreindRequest({sentRequest: true, didFindUser: true});
-      }else{
-        setFreindRequest({sentRequest: true, didFindUser: false});
-      }
-    }).catch(function(err){
-
-      console.log(err)
-    })
+    axios.post("/api/user/addfriend", Querystring.stringify({"newfriendusername": searchUserName}))
+      .then(res => {
+        if (res.data.status === "success"){
+          setFreindRequest({sentRequest: true, didFindUser: true});
+        }else{
+          setFreindRequest({sentRequest: true, didFindUser: false});
+        }
+      });
   }
 
   return (
     <div className="friends-list shadow-sm">
     <h4>Add Friend</h4>
-
     <input
       className="search-friend-input"
       name="username"
@@ -79,8 +64,6 @@ function FriendsList(props) {
           />
         );
       })}
-
-
     </div>
   );
 }

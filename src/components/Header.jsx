@@ -1,27 +1,19 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap';
+import { Button, Navbar, Nav } from 'react-bootstrap';
 
 function Header(props) {
-  function logout(){
-    axios({
-      method: 'get',
-      withCredentials: true,
-      url: '/api/logout',
-    }).then(() => {props.reAuth()})
-  }
-
   function getNavLinks(){
     if (props.auth){
       return (
-        <Button onClick={logout} variant="outline-light">Log out</Button>
+        <Button onClick={props.logout} variant="outline-light">Log out</Button>
       );
     }else{
       return (
         <>
-        <Link className="btn btn-outline-light mr-3" to="/login">Log in</Link>
-        <Link className="btn btn-danger" to="/register">Join the boys!</Link>
+          <Link className="btn btn-outline-light mr-3" to="/login">Log in</Link>
+          <Link className="btn btn-danger" to="/register">Join the boys!</Link>
         </>
       );
     }

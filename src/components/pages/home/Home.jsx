@@ -20,7 +20,6 @@ function HomeScreen(props){
 }
 
 function Home(props) {
-
   return (
     <HomeScreen auth={props.auth}/>
   );
