@@ -36,10 +36,20 @@
   overflow-y: scroll;
 }
 
+.friends-page{
+  height: calc(100vh + 55px);
+  background-color: #f6f8fa;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding: 20px;
+}
+
+
 .search-friend-input{
   border: 1px solid #eee;
   background-color: #fff;
-  width: 250px;
+  width: 240px;
   border-radius: 3px;
   padding: 10px 15px;
   margin: 0 15px 10px auto;

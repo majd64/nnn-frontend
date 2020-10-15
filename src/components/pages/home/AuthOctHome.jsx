@@ -3,11 +3,14 @@ import FriendsList from "../../friends/FriendsList";
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import { Button } from 'react-bootstrap';
+import {Default} from "../../ScreenSizes"
 
 function AuthOctHome(props) {
   return (
     <>
-      <FriendsList user={props.user}/>
+      <Default>
+        <FriendsList className="shadow-sm friends-list"/>
+      </Default>
       <div style={{ overflow: "hidden" }}>
         <h1>Hello {props.user && props.user.username}</h1>
           <div className="container d-flex align-items-center" >

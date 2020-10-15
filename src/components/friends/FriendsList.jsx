@@ -48,7 +48,7 @@ function FriendsList(props) {
   }
 
   return (
-    <div className="friends-list shadow-sm">
+    <div className={props.className}>
     <h4>Add Friend</h4>
     <input
       className="search-friend-input"
