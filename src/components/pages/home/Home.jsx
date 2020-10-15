@@ -12,7 +12,7 @@ function HomeScreen(props){
     }
   }else{
     if (props.auth){
-      return <AuthOctHome />
+      return <AuthOctHome user={props.user}/>
     }else{
       return <NoAuthOctHome />
     }
@@ -21,7 +21,7 @@ function HomeScreen(props){
 
 function Home(props) {
   return (
-    <HomeScreen auth={props.auth}/>
+    <HomeScreen user={props.user} auth={props.auth}/>
   );
 }
 

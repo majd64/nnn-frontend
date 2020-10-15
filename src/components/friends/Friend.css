@@ -20,6 +20,10 @@
   height: 100%;
 }
 
+.friend-request .friend-name{
+  padding-left: 15px;
+}
+
 .friends-list{
   height: calc(100vh - 55px);
   background-color: #f6f8fa;
@@ -28,6 +32,7 @@
   text-align: left;
   padding: 20px;
   margin-left: 0;
+  float: left;
 }
 
 .search-friend-input{

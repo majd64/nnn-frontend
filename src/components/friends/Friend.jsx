@@ -2,8 +2,6 @@ import React from "react";
 import './Friend.css';
 
 function Friend(props) {
-
-
   return (
     <>
       <div className="friend">

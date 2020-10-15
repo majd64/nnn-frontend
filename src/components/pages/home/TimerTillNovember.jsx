@@ -21,19 +21,19 @@ function TimerTillNovember(props) {
 
   switch (props.size) {
     case 1:
-      return <h1 className={props.class}>{timerText}</h1>;
+      return <h1 style={props.style} className={props.className}>{timerText}</h1>;
     case 2:
-      return <h2 className={props.class}>{timerText}</h2>;
+      return <h2 style={props.style}className={props.className}>{timerText}</h2>;
     case 3:
-      return <h3 className={props.class}>{timerText}</h3>;
+      return <h3 style={props.style} className={props.className}>{timerText}</h3>;
     case 4:
-      return <h4 className={props.class}>{timerText}</h4>;
+      return <h4 style={props.style} className={props.className}>{timerText}</h4>;
     case 5:
-      return <h5 className={props.class}>{timerText}</h5>;
+      return <h5 style={props.style} className={props.className}>{timerText}</h5>;
     case 6:
-      return <h6 className={props.class}>{timerText}</h6>;
+      return <h6 style={props.style} className={props.className}>{timerText}</h6>;
     default:
-      return <h5 className={props.class}>{timerText}</h5>;
+      return <h5 style={props.style} className={props.className}>{timerText}</h5>;
   }
 }
 

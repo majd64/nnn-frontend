@@ -12,18 +12,22 @@ import '../App.css';
 
 function App() {
   const [auth, setAuth] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     reAuth();
-  });
+  }, [auth]);
 
   function reAuth(){
-    axios.get("/api/user/auth")
+    axios.get("/api/user")
       .then(res => {
+        console.log(res.data)
         if (res.data.status === "success"){
           setAuth(true);
+          setUser(res.data.user);
         } else{
           setAuth(false);
+          setUser(null);
         }
       });
   }
@@ -36,7 +40,7 @@ function App() {
   return (
     <Router>
     <Header auth={auth} reAuth={reAuth} logout={logout}/>
-      <Route path="/" exact render={(props) => (<Home {...props} auth={auth}/>)}/>
+      <Route path="/" exact render={(props) => (<Home {...props} auth={auth} user={user}/>)}/>
       <Route path="/register" exact render={(props) => (<Register {...props} auth={auth} reAuth={reAuth}/>)}/>
       <Route path="/login" exact render={(props) => (<Login {...props} auth={auth} reAuth={reAuth}/>)}/>
       <Route path="/about" exact component={About} />
