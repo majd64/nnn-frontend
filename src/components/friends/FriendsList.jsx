@@ -12,7 +12,8 @@ function FriendsList(props) {
   const [friendRequests, setFriendRequests] = useState([]);
 
   const [searchUserName, setSearchUserName] = useState("");
-  const [friendRequest, setFreindRequest] = useState({sentRequest: false, didFindUser: false, isSelf: false});
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [sentRequest, setSentRequest] = useState(false);
 
   useEffect(() => {
     getFriends();
@@ -21,7 +22,6 @@ function FriendsList(props) {
   function getFriends(){
     axios.get("/api/user/friends")
       .then(res => {
-        console.log(res.data)
         if (res.data.status === "success"){
           setFriends(res.data.friends);
           setFriendRequests(res.data.friendRequests);
@@ -35,16 +35,14 @@ function FriendsList(props) {
 
   function submit(event){
     event.preventDefault();
-    if (searchUserName.trim() === props.user.username){
-      setFreindRequest({sentRequest: false, didFindUser: false, isSelf: true});
-      return;
-    }
     axios.post("/api/user/sendFriendRequest", Querystring.stringify({"newfriendusername": searchUserName}))
       .then(res => {
         if (res.data.status === "success"){
-          setFreindRequest({sentRequest: true, didFindUser: true, isSelf: false});
-        }else{
-          setFreindRequest({sentRequest: true, didFindUser: false, isSelf: false});
+          setErrorMessage(null);
+          setSentRequest(true)
+        }else if (res.data.status === "error"){
+          setErrorMessage(res.data.message);
+          setSentRequest(false)
         }
       });
   }
@@ -63,9 +61,8 @@ function FriendsList(props) {
       <Fab onClick={submit} size="small" color="secondary" aria-label="add">
           <SendIcon />
       </Fab>
-      {friendRequest.sentRequest && !friendRequest.didFindUser && <div className="invalid-feedback d-block">Cannot find user</div>}
-      {friendRequest.isSelf && <div className="invalid-feedback d-block">You cannot add yourself silly</div>}
-      {friendRequest.sentRequest && friendRequest.didFindUser && <div className="valid-feedback d-block">Sent friend request</div>}
+      {errorMessage && <div className="invalid-feedback d-block">{errorMessage}</div>}
+      {sentRequest && <div className="valid-feedback d-block">Friend Request Sent!</div>}
       <hr />
       <h4>Friends</h4>
       {friends.map((friend, index) => {

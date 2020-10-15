@@ -33,6 +33,7 @@
   padding: 20px;
   margin-left: 0;
   float: left;
+  overflow-y: scroll;
 }
 
 .search-friend-input{
