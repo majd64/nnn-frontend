@@ -1,5 +1,8 @@
 import React from "react";
 import './Friend.css';
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import Messages from "./Messages"
+import { Link } from 'react-router-dom';
 
 function Friend(props) {
   return (
@@ -8,9 +11,9 @@ function Friend(props) {
       <img className="img-circle" width="60" height="60" alt="profile" src="https://cdn.jpegmini.com/user/images/slider_puffin_before_mobile.jpg"/>
         <div className="friend-text">
         <div style={{position: "relative", top: "15%"}}>
-          <h6 className="friend-name"><strong>{props.name}</strong></h6>
+          <h6 className="friend-name"><strong><Link friend={props.friend} to={{pathname: `/messages/${props.friend._id}`}}>{props.friend.username}</Link></strong></h6>
           <br />
-          <p className="friend-subtitle">Did nut: {props.didNut.toString()}</p>
+          <p className="friend-subtitle">Did nut: {props.friend.didNut.toString()}</p>
           </div>
         </div>
       </div>

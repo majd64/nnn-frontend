@@ -10,9 +10,9 @@ function FriendRequest(props) {
   function mangeFriendRequest(accept){
     let url;
     if (accept){
-      url = "/api/user/friendRequest/true"
+      url = "/api/user/friends/friendRequest/true"
     }else{
-      url = "/api/user/friendRequest/false"
+      url = "/api/user/friends/friendRequest/false"
     }
     axios.post(url, Querystring.stringify({friendId: props.friend._id}))
       .then(res => {

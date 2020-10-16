@@ -10,6 +10,7 @@ import axios from "axios"
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
+import  Messages from "./friends/Messages"
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -46,6 +47,7 @@ function App() {
       <Route path="/login" exact render={(props) => (<Login {...props} auth={auth} reAuth={reAuth}/>)}/>
       <Route path="/about" exact component={About} />
       <Route path="/rules" exact component={Rules} />
+      <Route exact path='/messages/:friendid/' component={Messages}/>
     </Router>
   );
 }

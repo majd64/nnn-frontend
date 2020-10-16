@@ -35,7 +35,7 @@ function FriendsList(props) {
 
   function submit(event){
     event.preventDefault();
-    axios.post("/api/user/sendFriendRequest", Querystring.stringify({"newfriendusername": searchUserName}))
+    axios.post("/api/user/friends/sendFriendRequest", Querystring.stringify({"newfriendusername": searchUserName}))
       .then(res => {
         if (res.data.status === "success"){
           setErrorMessage(null);
@@ -70,8 +70,7 @@ function FriendsList(props) {
           <Friend
             key={index}
             id={index}
-            name={friend.username}
-            didNut={friend.didNut}
+            friend={friend}
           />
         );
       })}
