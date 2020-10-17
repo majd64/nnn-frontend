@@ -37,12 +37,38 @@
 }
 
 .friends-page{
-  height: calc(100vh + 55px);
+  height: calc(100vh - 55px);
   background-color: #f6f8fa;
   display: inline-block;
   width: 100%;
   text-align: left;
   padding: 20px;
+}
+
+.messages-list{
+  height: calc(100vh - 55px);
+  background-color: #f6f8fa;
+  display: inline-block;
+  width: 350px;
+  text-align: left;
+  padding: 20px;
+  margin-left: 0;
+  float: left;
+}
+
+.messages-page{
+  height: calc(100vh - 55px);
+  background-color: #f6f8fa;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding: 20px;
+}
+
+.scrollable-messages{
+  margin-top: 20px;
+  overflow-y: scroll;
+  height: calc(100vh - 230px);
 }
 
 
@@ -63,4 +89,9 @@
 
 .friend img{
   border-radius: 50%;
+}
+
+.message-box{
+  position: absolute;
+  bottom: 10px;
 }

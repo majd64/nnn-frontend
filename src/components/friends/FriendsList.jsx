@@ -17,7 +17,10 @@ function FriendsList(props) {
 
   useEffect(() => {
     getFriends();
-  }, [friends.length]);
+    setTimeout(() => {
+      getFriends();
+    }, 5000);
+  });
 
   function getFriends(){
     axios.get("/api/user/friends")
@@ -29,13 +32,17 @@ function FriendsList(props) {
       });
   }
 
+  function openMessages(friend){
+    props.openMessages(friend)
+  }
+
   function handleChange(event) {
     setSearchUserName(event.target.value);
   }
 
   function submit(event){
     event.preventDefault();
-    axios.post("/api/user/friends/sendFriendRequest", Querystring.stringify({"newfriendusername": searchUserName}))
+    axios.post("/api/user/friends/sendfriendrequest", Querystring.stringify({"newfriendusername": searchUserName}))
       .then(res => {
         if (res.data.status === "success"){
           setErrorMessage(null);
@@ -52,7 +59,6 @@ function FriendsList(props) {
     <h4>Add Friend</h4>
     <input
       className="search-friend-input"
-      name="username"
       placeholder="Enter a username"
       autoComplete="no"
       value={searchUserName}
@@ -71,6 +77,7 @@ function FriendsList(props) {
             key={index}
             id={index}
             friend={friend}
+            openMessages={openMessages}
           />
         );
       })}

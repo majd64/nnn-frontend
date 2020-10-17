@@ -1,16 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import FriendsList from "../../friends/FriendsList";
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import { Button } from 'react-bootstrap';
-import {Default, Mobile} from "../../ScreenSizes"
-import nutImg from "../../../images/nut.png"
+import {Default, Mobile} from "../../ScreenSizes";
+import nutImg from "../../../images/nut.png";
+import Messages from "../../friends/Messages";
 
 function AuthOctHome(props) {
+  const [isMessagesOpen, setMessagesOpen] = useState(false);
+  const [friend, setFriend] = useState(null);
+
+  function openMessages(friend){
+    setFriend(friend)
+    setMessagesOpen(true);
+  }
+
+  function closeMessages(){
+    setMessagesOpen(false);
+  }
   return (
     <>
       <Default>
-        <FriendsList className="shadow-sm friends-list"/>
+        {isMessagesOpen? <Messages closeMessages={closeMessages} friend={friend} isFullScreen={false}/> : <FriendsList openMessages={openMessages} className="shadow-sm friends-list"/>}
       </Default>
       <div style={{ overflow: "hidden" }}>
       <Default>
